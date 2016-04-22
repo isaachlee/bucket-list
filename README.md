@@ -1,3 +1,5 @@
+[Live Link](http://bucket-list-application.herokuapp.com/)
+
 ## Overview
 
  * This is a bucket list application made using Meteor with React.js.
@@ -6,13 +8,13 @@
 
 ## Contributors
 
-* ####Jeremy Powell - https://github.com/jp5486
+* ####[Jeremy Powell](https://github.com/jp5486)
 
-* ####Joe Marion Woot - https://github.com/JoeMarion
+* ####[Joe Marion](https://github.com/JoeMarion)
 
-* ####Isaac Lee - https://github.com/isaachlee
+* ####[Isaac Lee](https://github.com/isaachlee)
 
-* ####Kai Huang - https://github.com/huangkc
+* ####[Kai Huang](https://github.com/huangkc)
 
 ## MVP
 
@@ -22,7 +24,11 @@
 
 ## Ver 1.0 update
 * Google Maps API functional (Creates a searchable map)
-* Image Uploads Supported via Amazong S3 uplodaing
+* Image Uploads Supported via Amazon Web Services uploading
+
+## Ver 1.1 update
+* Map has been resized
+* Live Link created on heroku
 
 ## In Development
 * Google Maps automatically populates with markers related to your currently selected bucket list app
