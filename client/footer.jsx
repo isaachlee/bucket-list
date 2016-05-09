@@ -23,14 +23,19 @@ Footer = React.createClass({
 
 	render () {
 		return (
-			<div id="footer">
-				<div id="bot-margin" className="navbar navbar-default navbar-bottom">
-					<a href="#" className="navbar-text pull-left" onClick={this.renderAbout}>About</a>
-					<a href="#" className="navbar-text pull-left" onClick={this.renderCredits}>Credits</a>
-					<a className="navbar-text pull-right" href="https://github.com/jp5486/bucket-list"> Check us out on <img id="github-link" src='GitHubLogo.png' /></a>
-				</div>
-			</div>
-
+      <footer className="page-footer">
+  			<div className="container">
+          <div className="row">
+            <div className="col 14 offset-12 s12">
+              <ul className="left">
+    					  <li><a href="#" className="grey-text text-lighten-3" onClick={this.renderAbout}>About</a></li>
+      					<li><a href="#" className="grey-text text-lighten-3" onClick={this.renderCredits}>Credits</a></li>
+                <li><a className="grey-text text-lighten-3 right" href="https://github.com/jp5486/bucket-list"> Github</a></li>
+              </ul>
+            </div>
+          </div>
+  			</div>
+      </footer>
 	  )
 	}
 })

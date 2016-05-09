@@ -31,8 +31,8 @@ BucketList = React.createClass({
     ReactDOM.findDOMNode(this.refs.title).value = ""
     ReactDOM.findDOMNode(this.refs.description).value = ""
     ReactDOM.findDOMNode(this.refs.tags).value = ""
-    ReactDOM.findDOMNode(this.refs.category).value = ""
-    ReactDOM.findDOMNode(this.refs.rating).value = ""
+    //ReactDOM.findDOMNode(this.refs.category).value = ""
+    //ReactDOM.findDOMNode(this.refs.rating).value = ""
     ReactDOM.findDOMNode(this.refs.address).value = ""
   },
 
@@ -41,9 +41,9 @@ BucketList = React.createClass({
     var title = ReactDOM.findDOMNode(this.refs.title).value.trim();
     var description = ReactDOM.findDOMNode(this.refs.description).value.trim();
     var tags = ReactDOM.findDOMNode(this.refs.tags).value.trim();
-    var category = ReactDOM.findDOMNode(this.refs.category).value.trim();
+    // var category = ReactDOM.findDOMNode(this.refs.category).value.trim();
     var address = ReactDOM.findDOMNode(this.refs.address).value.trim();
-    var rating = ReactDOM.findDOMNode(this.refs.rating).value.trim();
+    // var rating = ReactDOM.findDOMNode(this.refs.rating).value.trim();
 
     var pictureID = Session.get("photoID");
     if(pictureID !== undefined){
@@ -51,16 +51,14 @@ BucketList = React.createClass({
     } else {
       var image_data = "No Image"
     }
-    console.log("photoID::")
-    console.log(pictureID)
 
     BucketItemsCollection.insert({
       title: title,
       description: description,
       tags: tags,
-      category: category,
+      // category: category,
       address: address,
-      rating: rating,
+      // rating: rating,
       image_id: image_data,
       owner: Meteor.userId(),
       username: Meteor.user().username,
@@ -79,6 +77,14 @@ BucketList = React.createClass({
   ReactDOM.render(<PhotoCapsule />, document.getElementById("render-photo"));
   },
 
+  componentDidMount() {
+    var element = ReactDOM.findDOMNode(this.refs.category)
+
+    $(element).ready(function() {
+      $('select').material_select();
+    });
+  },
+
   render() {
     if (Meteor.user() == null) {
       return ( <div> Please Log In to create a personal bucket List</div> )
@@ -87,14 +93,14 @@ BucketList = React.createClass({
         <div className="bucketlist">
           <header>
             <h1>My Bucket List</h1>
-            <button onClick={this.addingNewItem}>Add a new item!</button>
+            <button onClick={this.addingNewItem} className = "btn">Add new item</button>
             <div id="render-photo"></div>
 
             {this.state.addingItem == true
             ? <form className="new-bucketitem form-group" onSubmit={this.handleSubmit}>
 
             <p>Title:
-              <input 
+              <input
                className="form-control"
 
                 type="text"
@@ -102,7 +108,7 @@ BucketList = React.createClass({
                 placeholder="Add title" />
             </p>
             <p>Description:
-              <input 
+              <input
                className="form-control"
 
                 type="text"
@@ -110,52 +116,26 @@ BucketList = React.createClass({
                 placeholder="Add description" />
             </p>
             <p>Tags:
-              <input 
+              <input
                className="form-control"
 
                 type="text"
                 ref="tags"
                 placeholder="Add tags" />
             </p>
-              <p>Category:
-               <select
-                 ref="category"
-                 className="drop-down-select"
-                 id="education-select-create">
-                   <option value="Education">Education</option>
-                   <option value="Food">Food</option>
-                   <option value="Local">Local</option>
-                   <option value="Outdoors">Outdoors</option>
-                   <option value="Sports">Sports</option>
-                   <option value="Tourist">Tourist</option>
-                   <option value="Travel">Travel</option>
-                </select>
-            </p>
               <p>Address:
-              <input 
+              <input
                className="form-control"
 
                 type="text"
                 ref="address"
                 placeholder="Add address" />
             </p>
-            <p>Rating:
-              <select
-               ref="rating"
-               className="drop-down-select"
-               id="rating-select">
-                 <option value="1" >1</option>
-                 <option value="2" >2</option>
-                 <option value="3" >3</option>
-                 <option value="4" >4</option>
-                 <option value="5" >5</option>
-              </select>
-            </p>
 
             <p>Picture: Dont forget to add a picture!
             </p>
 
-            <input 
+            <input
              className="button"
                   type="submit"
                   value="submit"/>
@@ -164,7 +144,7 @@ BucketList = React.createClass({
             }
           </header>
           <div className="text-container">
-          <ul>
+          <ul className="collection">
             {this.renderBucketItems()}
           </ul>
           </div>

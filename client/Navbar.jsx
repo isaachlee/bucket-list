@@ -14,8 +14,7 @@ Navbar = React.createClass({
 		event.preventDefault();
 		this.hidePage();
 		if(Meteor.user()==null){
-			ReactDOM.render(<AutoSlider />, document.getElementById('render-quad1'))
-		ReactDOM.render(<HomeText />, document.getElementById('render-quad2'))
+		ReactDOM.render(<HomeText />, document.getElementById('render-quad4'))
 			} else {
 			ReactDOM.render(<BucketList />, document.getElementById('render-quad1'));
   	  // ReactDOM.render(<CategoriesReact />, document.getElementById("render-quad2"));
@@ -36,18 +35,6 @@ Navbar = React.createClass({
 		ReactDOM.render(<Events />, document.getElementById('render-quad2'));
 	},
 
-	// render (){
-	// 	return (
-	// 		<nav className="navbar">
-	// 			<ul className="nav nav-tabs">
-	// 				<li role="presentation"><a href="#" onClick={this.renderHome}>Home</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderBucketList}>Bucket List</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderEvents}>Events</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderFriends}>Friends</a></li>
-	// 			</ul>
-	// 		</nav>
-	// 	)
-	// }
 	renderLandingPage(event){
 		event.preventDefault();
 		this.hidePage();
@@ -55,27 +42,27 @@ Navbar = React.createClass({
 		ReactDOM.render(<HomeText />, document.getElementById('render-quad2'));
 	},
 
+  renderForm(event){
+    event.preventDefault();
+    this.hidePage();
+    if (Meteor.user() == null) {
+    ReactDOM.render(<LoginForm />, document.getElementById('render-quad4'));
+    } else {
+    Meteor.logout();
+    this.renderHome();
+    }
+  },
+
 	render (){
 		return (
-			<nav className="navbar navbar-inverse navbar-fixed-top">
-			  <div className="container-fluid">
-			    <div className="navbar-header">
-			      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			      </button>
-			      <a onClick={this.renderLandingPage} className="navbar-brand glyphicon glyphicon-fire" href="#"></a>
-			    </div>
-			    <div className="collapse navbar-collapse" id="myNavbar">
-
-			      <ul className="nav navbar-nav">
-							<li className= "Active" role="presentation"><a href="#" onClick={this.renderHome}>Home</a></li>
-							<li role="presentation"><a href="#" onClick={this.renderBucketList}>Personal Bucket List</a></li>
-							<li role="presentation"><a href="#" onClick={this.renderEvents}>Map</a></li>
+			<nav>
+			  <div className="nav-wrapper">
+			      <ul id="nav-mobile" className="left">
+							<li><a className="waves-effect middle waves-light btn-large" href="#" onClick={this.renderHome}>Home</a></li>
 			      </ul>
-			      	<span id="render-login" className="pull-right"></span>
-			    </div>
+			      <ul>
+              <li className= "right middle waves-effect waves-light btn-large" onClick={this.renderForm}>login/logout</li>
+            </ul>
 			  </div>
 			</nav>
 		)

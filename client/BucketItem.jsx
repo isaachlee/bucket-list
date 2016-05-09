@@ -33,6 +33,7 @@ BucketItemReact = React.createClass({
 
 	toggleDescription(event){
 		this.setState({showDescription: !this.state.showDescription})
+    this.toggleSelected();
 	},
 
 	showBucketItemDetails(){
@@ -43,8 +44,12 @@ BucketItemReact = React.createClass({
 		var currentPicture = BucketItemsCollection.find(this.bucketitem.image_id)
 	},
 
-	selectThisListItem(){
-		$("#"+this.props.bucketitem._id).addClass("selected")
+	toggleSelected(){
+    if ($("#"+this.props.bucketitem._id).hasClass("active")){
+      $("#"+this.props.bucketitem._id).removeClass("active")
+    } else {
+      $("#"+this.props.bucketitem._id).addClass("active")
+    }
 	},
 
 	returnUrl(){
@@ -187,27 +192,33 @@ BucketItemReact = React.createClass({
 	render() {
 		const itemClassName = this.props.bucketitem.checked ? "checked" : "";
 		return (
-			<li className="list" id={this.props.bucketitem._id}>
-				<button className="delete" onClick={this.deleteThisBucketItem}>
+			<li className="collection-item" id={this.props.bucketitem._id}>
+        <div className="row">
+          <div onClick={this.toggleDescription}>
+          <button className="btn left purple">Select: {this.props.bucketitem.title}
+            </button>
+          </div>
+          </div>
+          <div className="row">
+
+				<button className="delete right btn red" onClick={this.deleteThisBucketItem}>
 					&times;
 				</button>
 				<div id="render-photo"></div>
 				<div id="picture-target"></div>
 
 				{this.state.editing == false
-				?	<button className="button" onClick={this.openForm}>Edit this item</button>
+				?	<button className="button btn right" onClick={this.openForm}>Edit</button>
 
-				:	<button className="stopediting" onClick={this.closeForm}>Close Edit Form</button>
+				:	<button className="stopediting btn right" onClick={this.closeForm}>Close Edit Form</button>
 				}
 
-				<div onClick={this.toggleDescription}>
-				<p className="title">{this.props.bucketitem.title}</p>
-				</div>
+        </div>
 
 				{(this.state.showDescription == true)
 				?
 					<div>
-						<button onClick={this.toggleShowAll}>Show All Details</button>
+						<button className="btn blue" onClick={this.toggleShowAll}>Show All Details</button>
 						<ul>
 							<li className="description">Description: {this.props.bucketitem.description}</li>
 						</ul>
@@ -220,9 +231,7 @@ BucketItemReact = React.createClass({
 						<div>
 							<ul>
 								<li className="tags">{this.props.bucketitem.tags}</li>
-								<li className="category">Category: {this.props.bucketitem.category}</li>
 								<li className="address">Address: {this.props.bucketitem.address}</li>
-								<li className="rating">Rating: {this.props.bucketitem.rating}</li>
 								<li><img className="picture" src={this.returnUrl()} /></li>
 							</ul>
 						</div>
