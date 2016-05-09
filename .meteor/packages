@@ -18,22 +18,21 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 insecure                # Allow all DB writes from clients (for prototyping)
 react
-accounts-facebook
 service-configuration
-accounts-password
-accounts-google
 http
 email
 meteorhacks:ssr
-accounts-base
 check
 dburles:google-maps
-twbs:bootstrap
 
 
 npm-container
 mdg:camera
 cfs:standard-packages
 cfs:filesystem
-accounts-ui
 
+materialize:materialize
+react-template-helper
+poetic:react-material-ui
+accounts-base
+accounts-password
