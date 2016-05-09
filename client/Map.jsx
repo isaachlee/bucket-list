@@ -11,7 +11,7 @@ Map = React.createClass({
     var mapOptions = {
       center: currentLocation,
       zoom: 12,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
 
     map = new google.maps.Map(document.getElementById("map-gic"),
