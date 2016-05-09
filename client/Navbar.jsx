@@ -14,8 +14,7 @@ Navbar = React.createClass({
 		event.preventDefault();
 		this.hidePage();
 		if(Meteor.user()==null){
-			ReactDOM.render(<AutoSlider />, document.getElementById('render-quad1'))
-		ReactDOM.render(<HomeText />, document.getElementById('render-quad2'))
+		ReactDOM.render(<HomeText />, document.getElementById('render-quad4'))
 			} else {
 			ReactDOM.render(<BucketList />, document.getElementById('render-quad1'));
   	  // ReactDOM.render(<CategoriesReact />, document.getElementById("render-quad2"));
