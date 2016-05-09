@@ -36,18 +36,6 @@ Navbar = React.createClass({
 		ReactDOM.render(<Events />, document.getElementById('render-quad2'));
 	},
 
-	// render (){
-	// 	return (
-	// 		<nav className="navbar">
-	// 			<ul className="nav nav-tabs">
-	// 				<li role="presentation"><a href="#" onClick={this.renderHome}>Home</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderBucketList}>Bucket List</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderEvents}>Events</a></li>
-	// 				<li role="presentation"><a href="#" onClick={this.renderFriends}>Friends</a></li>
-	// 			</ul>
-	// 		</nav>
-	// 	)
-	// }
 	renderLandingPage(event){
 		event.preventDefault();
 		this.hidePage();
@@ -55,27 +43,30 @@ Navbar = React.createClass({
 		ReactDOM.render(<HomeText />, document.getElementById('render-quad2'));
 	},
 
+  renderForm(event){
+    event.preventDefault();
+    this.hidePage();
+    ReactDOM.render(<LoginForm />, document.getElementById('render-quad2'));
+  },
+
 	render (){
 		return (
-			<nav className="navbar navbar-inverse navbar-fixed-top">
-			  <div className="container-fluid">
-			    <div className="navbar-header">
-			      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			        <span className="icon-bar"></span>
-			      </button>
-			      <a onClick={this.renderLandingPage} className="navbar-brand glyphicon glyphicon-fire" href="#"></a>
-			    </div>
-			    <div className="collapse navbar-collapse" id="myNavbar">
-
-			      <ul className="nav navbar-nav">
-							<li className= "Active" role="presentation"><a href="#" onClick={this.renderHome}>Home</a></li>
-							<li role="presentation"><a href="#" onClick={this.renderBucketList}>Personal Bucket List</a></li>
-							<li role="presentation"><a href="#" onClick={this.renderEvents}>Map</a></li>
+			<nav>
+			  <div className="nav-wrapper">
+        <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			      <ul id="nav-mobile" className="left hide-on-med-and-down">
+							<li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderHome}>Home</a></li>
+							<li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderBucketList}>Personal Bucket List</a></li>
+							<li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderEvents}>Map</a></li>
 			      </ul>
-			      	<span id="render-login" className="pull-right"></span>
-			    </div>
+            <ul id="mobile" className="side-nav">
+              <li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderHome}>Home</a></li>
+              <li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderBucketList}>Personal Bucket List</a></li>
+              <li><a className="waves-effect eaves-light btn" href="#" onClick={this.renderEvents}>Map</a></li>
+            </ul>
+			      <ul>
+              <li className= "right waves-effect eaves-light btn" onClick={this.renderForm}>login</li>
+            </ul>
 			  </div>
 			</nav>
 		)
