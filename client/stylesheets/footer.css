@@ -1,9 +1,9 @@
-.footer {
+/*.footer {
     position: fixed;
     bottom: 0;
-    /*bottom-margin: 0px;*/
+    bottom-margin: 0px;
     min-height: 50px;
-    /*border: 1px solid transparent;*/
+    border: 1px solid transparent;
     clear: both;
     height: 4em;
     border: 1px solid transparent;
@@ -17,4 +17,4 @@
 
 #bot-margin{
   margin-bottom: 0;
-}
+}*/

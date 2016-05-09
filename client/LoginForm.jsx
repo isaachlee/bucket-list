@@ -1,5 +1,9 @@
 LoginForm = React.createClass({
   render() {
-  return (<AtFormReact />)
+  return (
+    <div className="container">
+      <AtFormReact />
+    </div>
+  )
   }
 });

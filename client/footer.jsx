@@ -27,7 +27,6 @@ Footer = React.createClass({
   			<div className="container">
           <div className="row">
             <div className="col 14 offset-12 s12">
-              <h4 className="white-text"> Links </h4>
               <ul className="left">
     					  <li><a href="#" className="grey-text text-lighten-3" onClick={this.renderAbout}>About</a></li>
       					<li><a href="#" className="grey-text text-lighten-3" onClick={this.renderCredits}>Credits</a></li>
