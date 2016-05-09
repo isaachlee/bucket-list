@@ -1,6 +1,20 @@
 
 Navbar = React.createClass({
 
+  getInitialState() {
+  if (Meteor.user() == null) {
+      return {
+        loggedIn: false,
+        loggingIn: false
+      }
+    } else {
+      return {
+        loggedin: true,
+        loggingIn: false
+      }
+    }
+  },
+
 	hidePage() {
 		ReactDOM.unmountComponentAtNode(document.getElementById("render-quad1"))
 		ReactDOM.unmountComponentAtNode(document.getElementById("render-quad2"))
@@ -42,8 +56,26 @@ Navbar = React.createClass({
 
   renderLogin(event){
     event.preventDefault();
-    this.hidePage();
-    ReactDOM.render(<Login />, document.getElementById('render-quad2'));
+    this.setState({logginIn: true});
+  },
+
+  submitRegistration(event) {
+    event.preventDefault();
+    var emailVar = ReactDOM.findDOMNode(this.refs.registerEmail).value.trim();
+    var passwordVar = ReactDOM.findDOMNode(this.refs.registerPassword).value.trim();
+    Accounts.createUser({
+      email: emailVar,
+      password: passwordVar
+    });
+    this.setState({loggingIn: false})
+  },
+
+  submitLogin(event) {
+    event.preventDefault();
+    var emailVar = ReactDOM.findDOMNode(this.refs.loginEmail).value.trim();
+    var passwordVar = ReactDOM.findDOMNode(this.refs.loginPassword).value.trim();
+    Meteor.loginWithPassword(emailVar, passwordVar);
+    this.setState({loggingIn: false})
   },
 
 	render (){
@@ -59,6 +91,33 @@ Navbar = React.createClass({
           </ul>
           <ul className="right">
             <li className="waves-effect waves-light btn" onClick={this.renderLogin}><a href="#" >Login</a></li>
+            {this.state.loggingIn == true
+            ?
+            <div>
+            <h2> Please log in. </h2>
+              <form onSubmit={this.submitLogin}>
+                <p>Email:
+                <input  type="email" ref="loginEmail"/>
+                </p>
+                <p>Password:
+                <input type="password" ref="loginPassword"/>
+                </p>
+                <input type="submit" value="Login" />
+              </form>
+
+            <h2> No account? No problem. Make one now! </h2>
+              <form onSubmit={this.submitRegistration}>
+                <p>Email:
+                <input type="email" ref="registerEmail"/>
+                </p>
+                <p>Password
+                <input type="password" ref="registerPassword"/>
+                </p>
+                <input type="submit" value="Register"/>
+              </form>
+            </div>
+            : null
+            }
           </ul>
           </div>
 			  </div>
